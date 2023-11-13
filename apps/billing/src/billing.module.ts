@@ -6,13 +6,15 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    isGlobal: true,
-    validationSchema: Joi.object({
-      RABBIT_MQ_URI: Joi.string().required(),
-      RABBIT_MQ_BILLING_QUEUE: Joi.string().required(),
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        RABBIT_MQ_URI: Joi.string().required(),
+        RABBIT_MQ_BILLING_QUEUE: Joi.string().required(),
     })
-  }), RmqModule
+  }), 
+  RmqModule,
   ],
   controllers: [BillingController],
   providers: [BillingService],
