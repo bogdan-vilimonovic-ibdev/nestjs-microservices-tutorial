@@ -10,8 +10,8 @@ export class OrdersRepository extends AbstractRepository<Order> {
 
     constructor(
         @InjectModel(Order.name) orderModel: Model<Order>,
-        @InjectConnection() connection: Connection
+        @InjectConnection() connection: Connection,
     ) {
         super(orderModel, connection);
-    };
+    }
 }

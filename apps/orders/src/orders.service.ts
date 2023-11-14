@@ -9,18 +9,16 @@ import { lastValueFrom } from 'rxjs';
 export class OrdersService {
   constructor(
     private readonly ordersRepository: OrdersRepository, 
-    @Inject(BILLING_SERVICE) private billingClient: ClientProxy
+    @Inject(BILLING_SERVICE) private billingClient: ClientProxy,
   ) {}
 
-  async createOrder(
-    request: CreateOrderRequest
-  ) {
-    const session = await this.ordersRepository.startTransation();
-    try{
+  async createOrder(request: CreateOrderRequest) {
+    const session = await this.ordersRepository.startTransaction();
+    try {
       const order = await this.ordersRepository.create(request, { session });
       await lastValueFrom(
         this.billingClient.emit('order_created', {
-          request
+          request,
         }),
       );
       await session.commitTransaction();

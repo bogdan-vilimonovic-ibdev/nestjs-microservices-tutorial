@@ -20,10 +20,10 @@ import { BILLING_SERVICE } from './constants/services';
       envFilePath: './apps/orders/.env',
     }),
     DatabaseModule,
-    MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema}]),
+    MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
     RmqModule.register({
       name: BILLING_SERVICE,
-    })
+    }),
   ],
   controllers: [OrdersController],
   providers: [OrdersService, OrdersRepository],

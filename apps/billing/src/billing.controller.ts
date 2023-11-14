@@ -5,7 +5,10 @@ import { RmqService } from '@app/common';
 
 @Controller()
 export class BillingController {
-  constructor(private readonly billingService: BillingService, private readonly rmqService: RmqService) {}
+  constructor(
+    private readonly billingService: BillingService, 
+    private readonly rmqService: RmqService,
+  ) {}
 
   @Get()
   getHello(): string {
